@@ -53,6 +53,16 @@ class Reactions(Base):
     comment_id = Column(Integer,ForeignKey('comments.id'))
     comment = relationship(Comments)
 
+class Followers(Base):
+    __tablename__ = 'followers'
+    id = Column(Integer, primary_key=True)
+    follower_user_id = Column(Integer, ForeignKey('users.id'))
+    followed_user_id = Column(Integer, ForeignKey('user.id'))
+    follower = relationship(User)
+    followed = relationship(User)
+
+    def __repr__(self):
+        return '<Follower %r>' % self.id
 
 
 
